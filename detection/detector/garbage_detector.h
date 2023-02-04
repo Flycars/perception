@@ -13,3 +13,26 @@
 // limitations under the License.
 
 //  Author: daohu527
+
+#pragma once
+
+#include <torch/script.h>
+
+#include "detection/interface/detector.h"
+
+namespace perception {
+
+
+class GarbageDetector : public BaseDetector {
+ public:
+  GarbageDetector() = default;
+  virtual ~GarbageDetector() = default;
+
+  bool Init(const DetectorOption& option) override;
+
+  bool Detect(CameraFrame* frame) override;
+ private:
+  torch::jit::script::Module module_;
+};
+
+}  // namespace perception

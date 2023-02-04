@@ -14,23 +14,13 @@
 
 //  Author: daohu527
 
-#include "detection/detector/object_detector.h"
+#pragma once
 
 namespace perception {
 
-bool ObjectDetector::Init(const DetectorOption& option) {
-  module_ = torch::jit::load(option.model_path);
-  return true;
-}
-
-bool ObjectDetector::Detect(CameraFrame* frame) {
-  std::vector<torch::jit::IValue> inputs;
-  // Todo(daohu527): add image to input
-  // inputs.push_back();
-
-  at::Tensor output = module_.forward(inputs).toTensor();
-
-  return true;
-}
+class CameraFrame {
+ public:
+  // cv::Image* image;
+};
 
 }  // namespace perception
